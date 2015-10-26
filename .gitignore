@@ -22,3 +22,7 @@ _testmain.go
 *.exe
 *.test
 *.prof
+
+# gogitignore start
+example/example
+# gogitignore end
