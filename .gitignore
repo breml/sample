@@ -23,6 +23,9 @@ _testmain.go
 *.test
 *.prof
 
+# Temporary output, e.g. coverage out
+*.out
+
 # gogitignore start
 example/example
 # gogitignore end
