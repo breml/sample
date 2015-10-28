@@ -1,0 +1,13 @@
+language: go
+
+go:
+    - 1.2.2
+    - 1.5
+    - tip
+
+notifications:
+    email: 
+        recipients:
+            - github@bremis.ch
+        on_success: never
+        on_failure: always
