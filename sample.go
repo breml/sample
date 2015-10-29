@@ -15,21 +15,28 @@ type sampleState struct {
 
 // A Sampler is a source of sampling decisions.
 type Sampler interface {
+	// Sample returns a sampling decision based on a random number.
 	Sample() bool
+	// SampleFrom returns a sampling decision based on probe.
 	SampleFrom(probe uint64) bool
 	State
 }
 
 // A State is the internal State of a Sampler.
 type State interface {
+	// Reset the internal state of the sampler to the initial values
+	// This also resets the random number generator to the initial state with the initial seed value
 	Reset()
+	// String returns the internal state of the sampler as string
 	String() string
+	// Returns the rate
 	Rate() uint64
+	// Calls returns how many times the sampler was asked to sample
 	Calls() uint64
+	// Count returns how many times the sampler sampled (returned true)
 	Count() uint64
 }
 
-// Returns the rate
 func (state *sampleState) Rate() uint64 {
 	if state != nil {
 		return state.rate
@@ -37,7 +44,6 @@ func (state *sampleState) Rate() uint64 {
 	return 0
 }
 
-// Calls returns how many times the sampler was asked to sample
 func (state *sampleState) Calls() uint64 {
 	if state != nil {
 		return state.sampleCount
@@ -45,7 +51,6 @@ func (state *sampleState) Calls() uint64 {
 	return 0
 }
 
-// Count returns how many times the sampler sampled (returned true)
 func (state *sampleState) Count() uint64 {
 	if state != nil {
 		return state.trueCount
@@ -53,15 +58,12 @@ func (state *sampleState) Count() uint64 {
 	return 0
 }
 
-// Reset the internal state of the sampler to the initial values
-// This also resets the random number generator to the initial state with the initial seed value
 func (state *sampleState) Reset() {
 	state.rnd.Seed(state.seed)
 	state.sampleCount = 0
 	state.trueCount = 0
 }
 
-// String returns the internal state of the sampler as string
 func (state *sampleState) String() string {
 	type X *sampleState
 	x := X(state)

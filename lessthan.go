@@ -29,12 +29,10 @@ func NewLessThanSeeded(rate uint64, seed int64) (Sampler, error) {
 	return &lessThan{sampleState: sampleState{rate: rate, seed: seed, rnd: rnd}, boundary: math.MaxUint64 / rate}, nil
 }
 
-// Sample returns a sampling decision based on a random number.
 func (lt *lessThan) Sample() bool {
 	return lt.SampleFrom(randUint64(lt.rnd))
 }
 
-// SampleFrom returns a sampling decision based on probe.
 func (lt *lessThan) SampleFrom(probe uint64) bool {
 	lt.sampleCount++
 	if probe < lt.boundary || lt.rate == 1 {
@@ -44,7 +42,6 @@ func (lt *lessThan) SampleFrom(probe uint64) bool {
 	return false
 }
 
-// String returns the internal state of the sampler as string
 func (lt *lessThan) String() string {
 	type X *lessThan
 	x := X(lt)
