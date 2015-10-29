@@ -84,5 +84,5 @@ func Stats(state State) string {
 	if state != nil {
 		return fmt.Sprintf("Rate: %d, SampleCount: %d, TrueCount: %d, Deviation: %.4f%%", state.Rate(), state.Calls(), state.Count(), Deviation(state)*100.0)
 	}
-	return "No sampler provided"
+	return "No state provided"
 }

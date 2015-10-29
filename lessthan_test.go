@@ -13,16 +13,7 @@ func TestLessThanNilSampler(t *testing.T) {
 	if err == nil {
 		t.Fatal("NewLessThan must error if rate = 0", err)
 	}
-
-	// Deviation without sampler
-	if Deviation(sampler) != 1.0 {
-		t.Error("without sampler deviation must be 1.0")
-	}
-
-	// Stats without sampler
-	if Stats(sampler) != "No sampler provided" {
-		t.Error("without sampler stats must be \"No sampler provided\"")
-	}
+	_ = sampler
 }
 
 func TestLessThanRate1(t *testing.T) {
@@ -88,40 +79,6 @@ func TestLessThanSeedSample(t *testing.T) {
 	}
 	if sampler.Sample() != true {
 		t.Error("sampling with seed 165 and rate 1000 did not return true")
-	}
-}
-
-func TestLessThanRate(t *testing.T) {
-	var sampler Sampler
-	var err error
-
-	sampler, err = NewLessThan(1000)
-	if err != nil {
-		t.Fatal("NewLessThan must not error", err)
-	}
-
-	// Check rate
-	if sampler.Rate() != 1000 {
-		t.Error("rate is 1000")
-	}
-}
-
-func TestLessThanReset(t *testing.T) {
-	var sampler Sampler
-	var err error
-
-	sampler, err = NewLessThanSeeded(1000, 165)
-	if err != nil {
-		t.Fatal("NewLessThan must not error", err)
-	}
-
-	sampler.Sample()
-
-	// Reset
-	sampler.Reset()
-
-	if sampler.Sample() != true {
-		t.Error("sampling after reset with seed 165 and rate 1000 did not return true")
 	}
 }
 

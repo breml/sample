@@ -77,7 +77,15 @@ func TestSampleStateString(t *testing.T) {
 }
 
 func TestSampleStateStats(t *testing.T) {
-	state := &sampleState{rate: 10, seed: 0, sampleCount: 1000, trueCount: 100}
+	var state State
+
+	// Stats without sampler
+	s := Stats(state)
+	if s != "No state provided" {
+		t.Error("without state stats must be \"No state provided\", but returned:", s)
+	}
+
+	state = &sampleState{rate: 10, seed: 0, sampleCount: 1000, trueCount: 100}
 
 	if Stats(state) != "Rate: 10, SampleCount: 1000, TrueCount: 100, Deviation: 0.0000%" {
 		t.Errorf("Expected: Rate: 10, SampleCount: 1000, TrueCount: 100, Deviation: 0.0000%%, Got: %s", Stats(state))
