@@ -35,7 +35,7 @@ func (lt *lessThan) Sample() bool {
 
 func (lt *lessThan) SampleFrom(probe uint64) bool {
 	lt.sampleCount++
-	if probe < lt.boundary || lt.rate == 1 {
+	if probe <= lt.boundary {
 		lt.trueCount++
 		return true
 	}
