@@ -18,7 +18,7 @@ func BenchmarkLessThanRand(b *testing.B) {
 	b.Log(Stats(s))
 }
 
-func BenchmarkLessThan(b *testing.B) {
+func BenchmarkLessThanFrom(b *testing.B) {
 	s, err := NewLessThan(1000)
 	if err != nil {
 		b.Fatal("NewLessThan must not error", err)
