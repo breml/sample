@@ -74,7 +74,7 @@ func TestPowerOf2SampleFrom(t *testing.T) {
 	}
 }
 
-func TestLPowerOf2SeedSample(t *testing.T) {
+func TestPowerOf2SeedSample(t *testing.T) {
 	var sampler Sampler
 	var err error
 
@@ -101,9 +101,9 @@ func TestLPowerOf2SeedSample(t *testing.T) {
 func TestPowerOf2String(t *testing.T) {
 	var sampler Sampler
 
-	sampler = &powerOf2{sampleState: sampleState{rate: 10, seed: 0, sampleCount: 1000, trueCount: 100}}
+	sampler = &powerOf2{sampleState: sampleState{rate: 1024, seed: 0, sampleCount: 1000, trueCount: 100}}
 
-	if sampler.String() != "&{sampleState:{rate:10 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}" {
-		t.Error("Expected: &{sampleState:{rate:10 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}, Got:", sampler.String())
+	if sampler.String() != "&{sampleState:{rate:1024 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}" {
+		t.Error("Expected: &{sampleState:{rate:1024 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}, Got:", sampler.String())
 	}
 }
