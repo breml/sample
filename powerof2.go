@@ -9,7 +9,7 @@ import (
 
 // PowerOf2 is a Sampler, which only works for rates being a power of 2.
 // The sampling is done by the calculation of the remainder:
-//     rate & (rate - 1) == 0
+//     probe & (rate - 1) == 0
 type powerOf2 struct {
 	sampleState
 }
