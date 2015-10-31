@@ -10,6 +10,8 @@ import (
 
 // LessThan is a Sampler, which samples if the probe is lower than boundary, where boundary is calculated as
 //     math.MaxUint64 / rate
+// The sampling is done by the following calculation:
+//     probe <= lt.boundary
 type lessThan struct {
 	sampleState
 	boundary uint64
