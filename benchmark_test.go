@@ -55,3 +55,21 @@ func BenchmarkPowerOf2From(b *testing.B) {
 
 	benchmarkFrom(b, s)
 }
+
+func BenchmarkModuloRand(b *testing.B) {
+	s, err := NewModulo(1000)
+	if err != nil {
+		b.Fatal("NewModulo must not error", err)
+	}
+
+	benchmarkRand(b, s)
+}
+
+func BenchmarkModuloFrom(b *testing.B) {
+	s, err := NewModulo(1000)
+	if err != nil {
+		b.Fatal("NewModulo must not error", err)
+	}
+
+	benchmarkFrom(b, s)
+}
