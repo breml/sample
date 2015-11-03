@@ -5,6 +5,12 @@
 
 Go package sample implements several sampling algorithms (1 in n sampling)
 
+## Go generate
+
+To generate the reciprocal_uint files use:
+    
+    go generate *.go
+
 ## Documentation
 
 [GoDoc](https://godoc.org/github.com/breml/sample)
