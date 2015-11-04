@@ -1,5 +1,3 @@
-//+build ignore
-
 package sample
 
 import (
@@ -7,26 +5,26 @@ import (
 	"testing"
 )
 
-func TestReciprocalUint64NilSampler(t *testing.T) {
+func TestReciprocalUint8NilSampler(t *testing.T) {
 	var sampler Sampler
 	var err error
 
-	sampler, err = NewReciprocalUint64(0)
+	sampler, err = NewReciprocalUint8(0)
 	if err == nil {
-		t.Fatal("NewReciprocalUint64 must error if rate = 0", err)
+		t.Fatal("NewReciprocalUint8 must error if rate = 0", err)
 	}
 
 	_ = sampler
 }
 
-func TestReciprocalUint64Rate1(t *testing.T) {
+func TestReciprocalUint8Rate1(t *testing.T) {
 	var sampler Sampler
 	var err error
 
 	// Sample 1
-	sampler, err = NewReciprocalUint64(1)
+	sampler, err = NewReciprocalUint8(1)
 	if err != nil {
-		t.Fatal("NewReciprocalUint64 must not error", err)
+		t.Fatal("NewReciprocalUint8 must not error", err)
 	}
 
 	// must return true for all cases
@@ -43,14 +41,14 @@ func TestReciprocalUint64Rate1(t *testing.T) {
 	}
 }
 
-func TestReciprocalUint64SampleFrom(t *testing.T) {
+func TestReciprocalUint8SampleFrom(t *testing.T) {
 	var sampler Sampler
 	var err error
 
 	// Sample 13 with from
-	sampler, err = NewReciprocalUint64(13)
+	sampler, err = NewReciprocalUint8(13)
 	if err != nil {
-		t.Fatal("NewReciprocalUint64 must not error", err)
+		t.Fatal("NewReciprocalUint8 must not error", err)
 	}
 	// true
 	if sampler.SampleFrom(0) != true {
@@ -66,28 +64,28 @@ func TestReciprocalUint64SampleFrom(t *testing.T) {
 	if sampler.SampleFrom(14) != false {
 		t.Error("sampling 1024 with rate 13 did not return false")
 	}
-	if sampler.SampleFrom(math.MaxUint64) != false {
+	if sampler.SampleFrom(math.MaxUint8) != false {
 		t.Error("sampling MaxUint64 with rate 13 did not return false")
 	}
 }
 
-func TestReciprocalUint64SeedSample(t *testing.T) {
+func TestReciprocalUint8SeedSample(t *testing.T) {
 	var sampler Sampler
 	var err error
 
 	// Sample with seed, false
-	sampler, err = NewReciprocalUint64Seeded(13, 0)
+	sampler, err = NewReciprocalUint8Seeded(13, 0)
 	if err != nil {
-		t.Fatal("NewReciprocalUint64 must not error", err)
+		t.Fatal("NewReciprocalUint8 must not error", err)
 	}
 	if sampler.Sample() != false {
 		t.Error("sampling with seed 0 and rate 13 did not return false")
 	}
 
 	// Sample with seed, true
-	sampler, err = NewReciprocalUint64Seeded(13, 643)
+	sampler, err = NewReciprocalUint8Seeded(13, 643)
 	if err != nil {
-		t.Fatal("NewReciprocalUint64 must not error", err)
+		t.Fatal("NewReciprocalUint8 must not error", err)
 	}
 
 	if sampler.Sample() != true {
@@ -95,12 +93,12 @@ func TestReciprocalUint64SeedSample(t *testing.T) {
 	}
 }
 
-func TestReciprocalUint64String(t *testing.T) {
+func TestReciprocalUint8String(t *testing.T) {
 	var sampler Sampler
 
-	sampler = &reciprocalUint64{sampleState: sampleState{rate: 64, seed: 0, sampleCount: 1000, trueCount: 100}, rateuint64: 64, reciprocal: 0}
+	sampler = &reciprocalUint8{sampleState: sampleState{rate: 64, seed: 0, sampleCount: 1000, trueCount: 100}, rateuint8: 64, reciprocal: 0}
 
-	if sampler.String() != "&{sampleState:{rate:64 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} rateuint64:64 reciprocal:0}" {
-		t.Error("Expected: &{sampleState:{rate:64 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} rateuint64:64 reciprocal:0}, Got:", sampler.String())
+	if sampler.String() != "&{sampleState:{rate:64 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} rateuint8:64 reciprocal:0}" {
+		t.Error("Expected: &{sampleState:{rate:64 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} rateuint8:64 reciprocal:0}, Got:", sampler.String())
 	}
 }

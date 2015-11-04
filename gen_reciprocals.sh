@@ -6,4 +6,10 @@
 # Usage:
 #   go generate *.go
 #
-cat $GOFILE | sed "s/\([uU]\)int8/\1int${1}/g" | grep -v "// +build ignore" | grep -v "go:generate" | gofmt > ${GOFILE%\.go}${1}.go
+if [[ "$GOFILE" == *_test.go ]]; then
+	OUTFILE="${GOFILE%_test\.go}${1}_test.go"
+else
+	OUTFILE="${GOFILE%\.go}${1}.go"
+fi
+
+cat $GOFILE | sed "s/\([uU]\)int8/\1int${1}/g" | grep -v "//+build ignore" | grep -v "go:generate" | gofmt > $OUTFILE
