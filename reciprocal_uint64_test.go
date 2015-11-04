@@ -83,13 +83,13 @@ func TestReciprocalUint64SeedSample(t *testing.T) {
 	}
 
 	// Sample with seed, true
-	sampler, err = NewReciprocalUint64Seeded(13, 643)
+	sampler, err = NewReciprocalUint64Seeded(13, seedUint64)
 	if err != nil {
 		t.Fatal("NewReciprocalUint64 must not error", err)
 	}
 
 	if sampler.Sample() != true {
-		t.Error("sampling with seed 643 and rate 13 did not return true")
+		t.Error("sampling with seed", seedUint64, "and rate 13 did not return true")
 	}
 }
 
