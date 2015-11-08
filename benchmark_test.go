@@ -73,3 +73,21 @@ func BenchmarkModuloFrom(b *testing.B) {
 
 	benchmarkFrom(b, s)
 }
+
+func BenchmarkDecrementRand(b *testing.B) {
+	s, err := NewDecrement(1000)
+	if err != nil {
+		b.Fatal("NewDecrement must not error", err)
+	}
+
+	benchmarkRand(b, s)
+}
+
+func BenchmarkDecrementFrom(b *testing.B) {
+	s, err := NewDecrement(1000)
+	if err != nil {
+		b.Fatal("NewDecrement must not error", err)
+	}
+
+	benchmarkFrom(b, s)
+}
