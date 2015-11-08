@@ -10,8 +10,8 @@ install:
     - go get github.com/mattn/goveralls
 
 script:
-    - "go test -v -covermode=count -coverprofile=coverage.out"
-    - "$(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN"
+    - go test -v -covermode=count -coverprofile=coverage.out
+    - $(go env GOPATH | awk 'BEGIN{FS=":"} {print $1}')/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
 
 env:
     secure: "boIvmP6K2CIH4GjTmXiWnlKXulbkZLnLwbsO1pDBY7yzn6Gx6OQgahE5dqFlB+LpfZNjl+AFTaEwMJk60w1ljSDWn3jaChPF+CtN7XOcvqk0sHXwVRFSI51iaki28tczmOj8d1ucY2X8AHgf+IInQRxZd4gi3Om4jYM2JX6K+ysZsi4xCnNUcDRIgRTtFithqL8qLGIYQ7oKWxSZpNfjF3DresAazrFyCKJBlE7Pw7/6AFZiPKL0kePOy/Ya2epNgAMEi9l/ejwPmo2wyCCXJ3xuqXGU0Js+p7uVN9WOPbId3ma6qZs/IYQKVt5/sRaoA7bSC9ZspHCkpALJ5TvY9ZCvfdy7haL8bM7Bav88sfruoxcv9eSkt5MjDwkZ5i8YSnTZV3+8wUET0vwOHpuF+jui05iTBWQlVXbLveyaD6LGIo7gCf9wcw3V+Jto8RyhD+e/J0iwbjeeESlSSbXK/QGC7CSfs3U/onghfy4W4YzsaJEA2aLMaoqra+pi51+TrxnIvD5/jRvoCg+TzvYeHnEyL523rS+TvwM+ApE5LPc6B9sLRvQwGhDDpXdkGcnQNbPlHjAsvNwiHVtubriWLfqHb8Znpa0kcNbKR/MbO0s500ADsPPt0yQyMKsb7sTvxUkuZ93C1ZF7sGHEifSkcji5YlYYhFO1o2xH8ABh0hc="
@@ -19,6 +19,6 @@ env:
 notifications:
     email: 
         recipients:
-            secure: "jTIahWktjY9Sc3CVie4UGkNZxCpzUqlc7kuhrcOQ5CmjrGnv/JafiaCC31W8Vekq/AieMr8+dTe9KEHDPpOacAEKTiPg9SiSsGtj+vvSC9KuIcQ/4dNmKxb5/h9Dc5KaU02b1AzCuABhrVgBDTGWxl5pqtxN72MaffBcFqAzdRDXzfycIalu39gVWK7+PzIvCvcPJjt41qbHiOuNT1wIzkocia5er86f5SSPylaNxLokevqhFTrgVhfyTzdk6LAOi7A2ifkv7cOCkmugmyggCaVMVQMD0AR56Cym8GvkckmV2rEAbaa3RuVPfWg/K7B1Jl0koWc5cdcuPN4HZwbUJAu0vsJdWZ6r44She/8IoTH9YtxlVy9yf/tP8qT5L0OMcDA8BQReBJZR6SZ/Bw2v+wg+AJ26n/weKOO7G/nGRJa3JQ8CiBEcr32zPF/bNeS90Vb6HhLT8o/SMgl4R0LHQpDsKua0Jgd7N8ClGdx5xErho0t48dX0kzOdZO5UpT22KWKChzQMjwW2weCsF977f8QIjCUYjf+35nveAklz9rMS7BO6PeNi6aR5hlrdrflsjCRzsb106fDETMtXsO+rgirZt/D8K0i6Yo78Ry5Oqf2NM2QjGvkaKYbugpnjspYSSOSajpo9dGlUCbBa/QD5vvTTfwy7CLkmwkLOPkkZ3gc="
+            - secure: "jTIahWktjY9Sc3CVie4UGkNZxCpzUqlc7kuhrcOQ5CmjrGnv/JafiaCC31W8Vekq/AieMr8+dTe9KEHDPpOacAEKTiPg9SiSsGtj+vvSC9KuIcQ/4dNmKxb5/h9Dc5KaU02b1AzCuABhrVgBDTGWxl5pqtxN72MaffBcFqAzdRDXzfycIalu39gVWK7+PzIvCvcPJjt41qbHiOuNT1wIzkocia5er86f5SSPylaNxLokevqhFTrgVhfyTzdk6LAOi7A2ifkv7cOCkmugmyggCaVMVQMD0AR56Cym8GvkckmV2rEAbaa3RuVPfWg/K7B1Jl0koWc5cdcuPN4HZwbUJAu0vsJdWZ6r44She/8IoTH9YtxlVy9yf/tP8qT5L0OMcDA8BQReBJZR6SZ/Bw2v+wg+AJ26n/weKOO7G/nGRJa3JQ8CiBEcr32zPF/bNeS90Vb6HhLT8o/SMgl4R0LHQpDsKua0Jgd7N8ClGdx5xErho0t48dX0kzOdZO5UpT22KWKChzQMjwW2weCsF977f8QIjCUYjf+35nveAklz9rMS7BO6PeNi6aR5hlrdrflsjCRzsb106fDETMtXsO+rgirZt/D8K0i6Yo78Ry5Oqf2NM2QjGvkaKYbugpnjspYSSOSajpo9dGlUCbBa/QD5vvTTfwy7CLkmwkLOPkkZ3gc="
         on_success: never
         on_failure: always
