@@ -1,6 +1,7 @@
 package sample
 
 import (
+	"fmt"
 	"math"
 	"testing"
 )
@@ -90,4 +91,25 @@ func TestLessThanString(t *testing.T) {
 	if sampler.String() != "&{sampleState:{rate:10 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} boundary:1844674407370955161}" {
 		t.Error("Expected: &{sampleState:{rate:10 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} boundary:1844674407370955161}, Got:", sampler.String())
 	}
+}
+
+func ExampleNewLessThanSeeded() {
+	s, err := NewLessThanSeeded(10, 0)
+	if err != nil {
+		fmt.Println("Unable to initialize sampler", err)
+	}
+	for i := 0; i < 100; i++ {
+		if s.Sample() {
+			fmt.Println(i, "got sampled by LessThan sampler")
+		}
+	}
+	fmt.Println(Stats(s))
+	// Output:
+	// 25 got sampled by LessThan sampler
+	// 27 got sampled by LessThan sampler
+	// 29 got sampled by LessThan sampler
+	// 43 got sampled by LessThan sampler
+	// 54 got sampled by LessThan sampler
+	// 73 got sampled by LessThan sampler
+	// Rate: 10, SampleCount: 100, TrueCount: 6, Deviation: -66.6667%
 }

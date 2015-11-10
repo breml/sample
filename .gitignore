@@ -27,5 +27,4 @@ _testmain.go
 *.out
 
 # gogitignore start
-example/example
 # gogitignore end
