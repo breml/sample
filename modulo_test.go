@@ -1,6 +1,7 @@
 package sample
 
 import (
+	"fmt"
 	"math"
 	"testing"
 )
@@ -101,4 +102,24 @@ func TestModuloString(t *testing.T) {
 	if sampler.String() != "&{sampleState:{rate:1024 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}" {
 		t.Error("Expected: &{sampleState:{rate:1024 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}, Got:", sampler.String())
 	}
+}
+
+func ExampleNewModuloSeeded() {
+	s, err := NewModuloSeeded(10, 0)
+	if err != nil {
+		fmt.Println("Unable to initialize sampler", err)
+	}
+	for i := 0; i < 100; i++ {
+		if s.Sample() {
+			fmt.Println(i, "got sampled by Modulo sampler")
+		}
+	}
+	fmt.Println(Stats(s))
+	// Output:
+	// 12 got sampled by Modulo sampler
+	// 31 got sampled by Modulo sampler
+	// 34 got sampled by Modulo sampler
+	// 60 got sampled by Modulo sampler
+	// Rate: 10, SampleCount: 100, TrueCount: 4, Deviation: -150.0000%
+
 }
