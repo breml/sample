@@ -1,6 +1,7 @@
 package sample
 
 import (
+	"fmt"
 	"math"
 	"testing"
 )
@@ -90,4 +91,29 @@ func TestDecrementString(t *testing.T) {
 	if sampler.String() != "&{sampleState:{rate:10 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} count:0}" {
 		t.Error("Expected: &{sampleState:{rate:10 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} count:0}, Got:", sampler.String())
 	}
+}
+
+func ExampleNewDecrementSeeded() {
+	s, err := NewDecrementSeeded(10, 0)
+	if err != nil {
+		fmt.Println("Unable to initialize sampler", err)
+	}
+	for i := 0; i < 100; i++ {
+		if s.Sample() {
+			fmt.Println(i, "got sampled by Decrement sampler")
+		}
+	}
+	fmt.Println(Stats(s))
+	// Output:
+	// 5 got sampled by Decrement sampler
+	// 23 got sampled by Decrement sampler
+	// 31 got sampled by Decrement sampler
+	// 37 got sampled by Decrement sampler
+	// 45 got sampled by Decrement sampler
+	// 63 got sampled by Decrement sampler
+	// 68 got sampled by Decrement sampler
+	// 79 got sampled by Decrement sampler
+	// 87 got sampled by Decrement sampler
+	// Rate: 10, SampleCount: 100, TrueCount: 9, Deviation: -11.1111%
+
 }
