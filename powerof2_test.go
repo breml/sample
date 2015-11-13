@@ -1,6 +1,7 @@
 package sample
 
 import (
+	"fmt"
 	"math"
 	"testing"
 )
@@ -106,4 +107,22 @@ func TestPowerOf2String(t *testing.T) {
 	if sampler.String() != "&{sampleState:{rate:1024 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}" {
 		t.Error("Expected: &{sampleState:{rate:1024 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>}}, Got:", sampler.String())
 	}
+}
+
+func ExampleNewPowerOf2Seeded() {
+	s, err := NewPowerOf2Seeded(16, 0)
+	if err != nil {
+		fmt.Println("Unable to initialize sampler", err)
+	}
+	for i := 0; i < 100; i++ {
+		if s.Sample() {
+			fmt.Println(i, "got sampled by PowerOf2 sampler")
+		}
+	}
+	fmt.Println(Stats(s))
+	// Output:
+	// 26 got sampled by PowerOf2 sampler
+	// 45 got sampled by PowerOf2 sampler
+	// Rate: 16, SampleCount: 100, TrueCount: 2, Deviation: -212.5000%
+
 }
