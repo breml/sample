@@ -1,6 +1,7 @@
 package sample
 
 import (
+	"fmt"
 	"math"
 	"testing"
 )
@@ -101,4 +102,18 @@ func TestReciprocalUint32String(t *testing.T) {
 	if sampler.String() != "&{sampleState:{rate:64 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} rateuint32:64 reciprocal:0}" {
 		t.Error("Expected: &{sampleState:{rate:64 seed:0 sampleCount:1000 trueCount:100 rnd:<nil>} rateuint32:64 reciprocal:0}, Got:", sampler.String())
 	}
+}
+
+func ExampleNewReciprocalUint32Seeded() {
+	s, err := NewReciprocalUint32Seeded(10, 0)
+	if err != nil {
+		fmt.Println("Unable to initialize sampler", err)
+	}
+	for i := 0; i < 100; i++ {
+		if s.Sample() {
+			fmt.Println(i, "got sampled by ReciprocalUint32 sampler")
+		}
+	}
+	fmt.Println(Stats(s))
+
 }
