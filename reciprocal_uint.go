@@ -1,4 +1,4 @@
-//+build ignore
+//+build generate
 //go:generate ./gen_reciprocals.sh 8
 //go:generate ./gen_reciprocals.sh 16
 //go:generate ./gen_reciprocals.sh 32

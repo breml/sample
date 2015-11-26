@@ -12,4 +12,4 @@ else
 	OUTFILE="${GOFILE%\.go}${1}.go"
 fi
 
-cat $GOFILE | sed "s/\([uU]\)int8/\1int${1}/g" | grep -v "//+build ignore" | grep -v "go:generate" | gofmt > $OUTFILE
+sed "s/\([uU]\)int8/\1int${1}/g" $GOFILE | grep -vE "//([+]build |go:)generate" | gofmt > $OUTFILE

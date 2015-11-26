@@ -21,6 +21,10 @@ To generate the reciprocal_uint files use:
     
     go generate *.go
 
+or
+
+	go generate -tags generate .
+
 ## Documentation
 
 [GoDoc](https://godoc.org/github.com/breml/sample)
