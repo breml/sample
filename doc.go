@@ -1,6 +1,4 @@
-// Package sample
-//
-// Go package sample implements sampling algorithms for 1 in n sampling for a random value (probe):
+// Package sample implements sampling algorithms for 1 in n sampling for a random value (probe):
 //
 //   * Modulo, using modulo-operation
 //   * PowerOf2, using bitwise AND-operation, only usable if the sampling rate is a power of 2
